@@ -1,1 +1,5 @@
-<text>这是一个组件111</text>
+<view class="playlist-container">
+  <image src="{{playlist.picUrl}}" class="playlist-img"></image>
+  <text class="playlist-playcount">{{_count}}</text>
+  <view class="playlist-name">{{playlist.name}}</view>
+</view>
