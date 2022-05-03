@@ -54,7 +54,12 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {},
+  onPullDownRefresh() {
+    this.setData({
+      playlist: [],
+    });
+    this._getPlaylist();
+  },
 
   /**
    * 页面上拉触底事件的处理函数
@@ -77,12 +82,15 @@ Page({
         data: {
           start: this.data.playlist.length,
           count: MAX_LIMIT,
+          $url: "playlist",
         },
       })
       .then((res) => {
         this.setData({
           playlist: [...this.data.playlist, ...res.result.data],
         });
+        // 停止下拉刷新动作
+        wx.stopPullDownRefresh();
         wx.hideLoading();
       });
   },
